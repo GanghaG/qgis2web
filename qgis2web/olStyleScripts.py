@@ -508,11 +508,12 @@ def getSymbolAsStyle(symbol, stylesFolder, layer_transparency, renderer, sln,
             line_width = props["line_width"]
             line_style = props["line_style"]
             line_units = props["line_width_unit"]
+            line_offset = props["line_offset"]
             lineCap = sl.penCapStyle()
             lineJoin = sl.penJoinStyle()
 
             style, useMapUnits = getStrokeStyle(color, line_style, line_width,
-                                                line_units, lineCap, lineJoin)
+                                                line_units, lineCap, lineJoin,line_offset)
         elif isinstance(sl, QgsSimpleFillSymbolLayer):
             fillColor = getRGBAColor(props["color"], alpha)
 
@@ -532,7 +533,7 @@ def getSymbolAsStyle(symbol, stylesFolder, layer_transparency, renderer, sln,
             style = ""
             (stroke, useMapUnits) = getStrokeStyle(borderColor, borderStyle,
                                                    borderWidth, line_units,
-                                                   lineCap, lineJoin)
+                                                   lineCap, lineJoin,line_offset)
             if stroke != "":
                 symbolStyles.append(stroke)
             fill = getFillStyle(fillColor, props)
